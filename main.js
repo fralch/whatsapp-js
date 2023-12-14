@@ -1,34 +1,40 @@
 const qrcode = require('qrcode-terminal');
-
 const { Client, LocalAuth } = require('whatsapp-web.js');
+const puppeteer = require('puppeteer');
 
-const client = new Client({
-    authStrategy: new LocalAuth()
-});
+(async () => {
+  // Lanzar Puppeteer y WhatsApp Web.js
+  const browser = await puppeteer.launch({
+    headless: 'new',
+    executablePath: '/usr/bin/chromium-browser', // Puedes especificar la ruta del ejecutable de Chromium aquí
+  });
 
-client.on('qr', qr => {
-    qrcode.generate(qr, {small: true});
-});
+  const client = new Client({
+    authStrategy: new LocalAuth(),
+    puppeteer: {
+      browserWSEndpoint: (await browser.wsEndpoint()), // Conectar Puppeteer con WhatsApp Web.js
+    },
+  });
 
-client.on('ready', () => {
+  client.on('qr', qr => {
+    qrcode.generate(qr, { small: true });
+  });
+
+  client.on('ready', async () => {
     console.log('Client is ready!');
-});
-
-// client.on('message', message => {
-//     console.log('Número del remitente:', message.from);
-// 	if(message.body === '!ping') {
-// 		message.reply('pong');
-// 	}
-// });
-client.on('ready', async () => {
-    console.log('Cliente listo');
     const targetNumber = '51955547121@c.us'; // Número de teléfono en formato internacional sin el signo '+'
     const message = 'Hola, este es un mensaje de richiman';
 
     await client.sendMessage(targetNumber, message);
     console.log('Mensaje enviado correctamente');
-});
+  });
 
+  // Iniciar WhatsApp Web.js
+  client.initialize();
 
-client.initialize();
- 
+  // Cerrar el navegador al salir
+  process.on('SIGINT', () => {
+    browser.close();
+    process.exit();
+  });
+})();
