@@ -1,40 +1,22 @@
-const qrcode = require('qrcode-terminal');
-const { Client, LocalAuth } = require('whatsapp-web.js');
-const puppeteer = require('puppeteer');
+const express = require('express');
+const cors = require('cors');
+const app = express();
+const bodyParser = require('body-parser');
 
-(async () => {
-  // Lanzar Puppeteer y WhatsApp Web.js
-  const browser = await puppeteer.launch({
-    headless: 'new',
-    executablePath: '/usr/bin/chromium-browser', // Puedes especificar la ruta del ejecutable de Chromium aquí
-  });
+app.use(cors()); // cors se utiliza para que el servidor pueda recibir peticiones de otros servidores si no se utiliza no se podra recibir peticiones de otros servidores
+app.use(express.json()); // express.json() se utiliza para que el servidor pueda recibir peticiones en formato json
 
-  const client = new Client({
-    authStrategy: new LocalAuth(),
-    puppeteer: {
-      browserWSEndpoint: (await browser.wsEndpoint()), // Conectar Puppeteer con WhatsApp Web.js
-    },
-  });
+app.use(bodyParser.urlencoded({ extended: false })); // bodyParser.urlencoded() se utiliza para que el servidor pueda recibir peticiones en formato urlencoded
+// el formato urlencoded es el que se utiliza en los formularios de html
+app.use(express.json({ limit: '50mb' }));
 
-  client.on('qr', qr => {
-    qrcode.generate(qr, { small: true });
-  });
 
-  client.on('ready', async () => {
-    console.log('Client is ready!');
-    const targetNumber = '51955547121@c.us'; // Número de teléfono en formato internacional sin el signo '+'
-    const message = 'Hola, este es un mensaje de richiman';
+const port = 3000;
 
-    await client.sendMessage(targetNumber, message);
-    console.log('Mensaje enviado correctamente');
-  });
+const rutas = require('./routes/rutas');
+app.use('/api', rutas);
 
-  // Iniciar WhatsApp Web.js
-  client.initialize();
+app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`)
+});
 
-  // Cerrar el navegador al salir
-  process.on('SIGINT', () => {
-    browser.close();
-    process.exit();
-  });
-})();
