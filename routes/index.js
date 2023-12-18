@@ -16,3 +16,5 @@ fs.readdirSync(PATH_ROUTES).filter( file => {
         router.use(`/${nombre}`, ruta);
     }
 })
+
+module.exports = router;

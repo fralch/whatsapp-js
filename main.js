@@ -3,6 +3,7 @@ const cors = require('cors');
 const app = express();
 const bodyParser = require('body-parser');
 
+
 app.use(cors()); // cors se utiliza para que el servidor pueda recibir peticiones de otros servidores si no se utiliza no se podra recibir peticiones de otros servidores
 app.use(express.json()); // express.json() se utiliza para que el servidor pueda recibir peticiones en formato json
 
@@ -13,7 +14,7 @@ app.use(express.json({ limit: '50mb' }));
 
 const port = 3000;
 
-const rutas = require('./routes/rutas');
+const rutas = require('./routes/index');
 app.use('/api', rutas);
 
 app.listen(port, () => {
