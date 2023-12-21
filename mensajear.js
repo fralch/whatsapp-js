@@ -36,10 +36,10 @@ const startClient = async () => {
 }
 
 function sendTextMessage(number, message) {
-    client.sendMessage(number, message)
-    .then(response => {
-        console.log(response);
-    })
+    // client.sendMessage(number, message)
+    // .then(response => {
+    //     console.log(response);
+    // })
 }
 
 module.exports = {
