@@ -1,10 +1,27 @@
 const qrcode = require('qrcode-terminal');
 
-const { Client } = require('whatsapp-web.js');
-const client = new Client();
+const { Client, LocalAuth } = require('whatsapp-web.js');
+
+const client = new Client({
+    authStrategy: new LocalAuth()
+});
+ 
 
 
-(async () => {
+// (async () => {
+//     client.on('qr', qr => {
+//         qrcode.generate(qr, { small: true });
+//     });
+
+//     client.on('ready', () => {
+//         console.log('Client is ready!');
+//     });
+
+//     client.initialize();
+
+// })();
+
+const startClient = async () => {
     client.on('qr', qr => {
         qrcode.generate(qr, { small: true });
     });
@@ -13,8 +30,10 @@ const client = new Client();
         console.log('Client is ready!');
     });
 
-    client.initialize();
-})();
+    await client.initialize();
+
+    return client;
+}
 
 function sendTextMessage(number, message) {
     client.sendMessage(number, message)
@@ -24,6 +43,7 @@ function sendTextMessage(number, message) {
 }
 
 module.exports = {
+    startClient,
     sendTextMessage
 }
  
