@@ -1,10 +1,12 @@
 const { startClient} = require('../mensajear');
+const express = require('express');
+const app = express();
 
 const enviarMensaje = async (req, res) => {
     const { body } = req;
     const { mensaje, numero } = body;
 
-    try {
+   
         const client = await startClient();
         // const targetNumber = '51955547121@c.us'; // Número de teléfono en formato internacional sin el signo '+'
         // const message = 'Hola, este es un mensaje de richiman';
@@ -16,19 +18,24 @@ const enviarMensaje = async (req, res) => {
         res.status(200).json({
             ok: true,
             mensaje: 'Mensaje enviado correctamente'
-        });
-      
+        })
+        cerrarClient(client)
         
-         
-    }
-    catch (error) {
-        res.status(500).json({
-            ok: false,
-            mensaje: error
-        });
-    }
+       
+    
+   
 }
 
+function cerrarClient(client) {   
+    // cerrar client de whatsapp js  despues de 5 segundos
+    console.log('cerrando client de whatsapp js  despues de 5 segundos')
+    setTimeout(() => {
+        client.destroy();
+    }, 20000);
+    
+
+    
+  }
 
 module.exports = {
     enviarMensaje
