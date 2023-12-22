@@ -30,8 +30,15 @@ function cerrarClient(client) {
     // cerrar client de whatsapp js  despues de 5 segundos
     console.log('cerrando client de whatsapp js  despues de 5 segundos')
     setTimeout(() => {
-        client.destroy();
-    }, 20000);
+        client.destroy()
+        .then(() => {
+            console.log('Client cerrado');
+        }); 
+    }, 20000).then
+
+    // mensaje de client cerrado
+    
+
     
 
     
