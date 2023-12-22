@@ -15,34 +15,36 @@ const enviarMensaje = async (req, res) => {
     
         await client.sendMessage(targetNumber, message);
         console.log('Mensaje enviado correctamente');
-        res.status(200).json({
-            ok: true,
-            mensaje: 'Mensaje enviado correctamente'
-        })
-        cerrarClient(client)
+        
+        await cerrarClient(client); 
+
+        function cerrarClient(client) {   
+          // cerrar client de whatsapp js  despues de 5 segundos
+          console.log('cerrando client de whatsapp js  despues de 5 segundos')
+          setTimeout(() => {
+              client.destroy()
+              .then(() => {
+                  console.log('Client cerrado');
+                  res.json({
+                      ok: true,
+                      msg: 'Client cerrado'
+                  });
+              }); 
+          }, 20000)   
+      
+          
+        }
+
+        
+        
+       
         
        
     
    
 }
 
-function cerrarClient(client) {   
-    // cerrar client de whatsapp js  despues de 5 segundos
-    console.log('cerrando client de whatsapp js  despues de 5 segundos')
-    setTimeout(() => {
-        client.destroy()
-        .then(() => {
-            console.log('Client cerrado');
-        }); 
-    }, 20000).then
 
-    // mensaje de client cerrado
-    
-
-    
-
-    
-  }
 
 module.exports = {
     enviarMensaje
