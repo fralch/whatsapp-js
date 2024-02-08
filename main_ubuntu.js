@@ -53,10 +53,12 @@ app.post('/api/whatsapp', async (req, res) => {
     const regex = /^9\d+$/;
 
     if (!regex.test(numero)) {
+        console.log('Numero no valido');
         return res.status(400).send('Numero no valido');
     }
 
     if (!mensaje || !numero) {
+        console.log('Faltan datos');
         return res.status(400).send('Faltan datos');
     }
 
@@ -66,8 +68,10 @@ app.post('/api/whatsapp', async (req, res) => {
 
    try{
     await client.sendMessage(targetNumber, message);
+    console.log('Mensaje enviado correctamente');
     res.send('Mensaje enviado correctamente');
    } catch (error) {
+         console.log('Error al enviar mensaje');
          res.send('Error al enviar mensaje');
     }
 });
