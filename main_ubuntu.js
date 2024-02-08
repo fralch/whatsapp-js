@@ -50,14 +50,28 @@ const port = 3000;
 app.post('/api/whatsapp', async (req, res) => {
     const { body } = req;
     const { mensaje, numero } = body;
+    const regex = /^9\d+$/;
+
+    if (!regex.test(numero)) {
+        return res.status(400).send('Numero no valido');
+    }
+
+    if (!mensaje || !numero) {
+        return res.status(400).send('Faltan datos');
+    }
 
 
     const targetNumber = `51${numero}@c.us`;
     const message = `${mensaje}`;
 
+   try{
     await client.sendMessage(targetNumber, message);
     console.log('Mensaje enviado correctamente');
     res.send('Mensaje enviado correctamente');
+   } catch (error) {
+         console.log('Error al enviar mensaje', error);
+         res.send('Error al enviar mensaje');
+    }
 });
 
 app.listen(port, () => {
