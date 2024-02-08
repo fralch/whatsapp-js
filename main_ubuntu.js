@@ -66,10 +66,8 @@ app.post('/api/whatsapp', async (req, res) => {
 
    try{
     await client.sendMessage(targetNumber, message);
-    console.log('Mensaje enviado correctamente');
     res.send('Mensaje enviado correctamente');
    } catch (error) {
-         console.log('Error al enviar mensaje', error);
          res.send('Error al enviar mensaje');
     }
 });
