@@ -52,16 +52,16 @@ app.post('/api/whatsapp', async (req, res) => {
     const { mensaje, numero } = body;
     const regex = /^9\d+$/;
 
-    if (!regex.test(numero)) {
-        console.log('Numero no valido');
-        return res.status(400).send('Numero no valido');
-    }
-
+    
     if (!mensaje || !numero) {
         console.log('Faltan datos');
         return res.status(400).send('Faltan datos');
     }
 
+    if (!regex.test(numero)) {
+        console.log('Numero no valido');
+        return res.status(400).send('Numero no valido');
+    }
 
     const targetNumber = `51${numero}@c.us`;
     const message = `${mensaje}`;
