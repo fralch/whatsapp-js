@@ -46,33 +46,74 @@ client.initialize();
 
 const port = 3000;
 
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+});
 
 app.post('/api/whatsapp', async (req, res) => {
     const { body } = req;
-    const { mensaje, numero } = body;
+    const { message, phone } = body;
     const regex = /^9\d+$/;
 
     
-    if (!mensaje || !numero) {
+    if (!message || !phone) {
         console.log('Faltan datos');
-        return res.status(400).send('Faltan datos');
+        const rpt = {
+            "status": "error",
+            "message": "Error al enviar el mensaje. Falta un parámetro.",
+            "code": "PARAMETER_NOT_FOUND"
+        }; 
+        return res.status(400).send(rpt);
+    }
+    if(message.trim() === '' ){
+        console.log('Faltan datos');
+        const rpt = {
+            "status": "error",
+            "message": "Error al enviar el mensaje. El mensaje está vacío.",
+            "code": "EMPTY_MESSAGE"
+          }
+        return res.status(400).send(rpt);
     }
 
-    if (!regex.test(numero)) {
-        console.log('Numero no valido');
-        return res.status(400).send('Numero no valido');
+    if(phone.trim() === '' ){
+        console.log('Faltan datos');
+        const rpt = {
+            "status": "error",
+            "message": "Error al enviar el mensaje. El número de teléfono está vacío.",
+            "code": "EMPTY_PHONE"
+          }
+        return res.status(400).send(rpt);
     }
 
-    const targetNumber = `51${numero}@c.us`;
-    const message = `${mensaje}`;
+    if (!regex.test(phone)) {
+        console.log('phone no valido');
+        const rpt = {
+            "status": "error",
+            "message": "Error al enviar el mensaje. El número de teléfono es inválido.",
+            "code": "INVALID_PHONE_NUMBER"
+          }; 
+        return res.status(400).send(rpt);
+    }
+
+    const targetNumber = `51${phone}@c.us`;
+    const message_ = `${message}`;
 
    try{
-    await client.sendMessage(targetNumber, message);
+    await client.sendMessage(targetNumber, message_);
+    const rpt = {
+        "status": "success",
+        "message": "El mensaje fue enviado exitosamente a +999999999"
+      }; 
     console.log('Mensaje enviado correctamente');
-    res.send('Mensaje enviado correctamente');
+    res.send(rpt);
    } catch (error) {
          console.log('Error al enviar mensaje');
-         res.send('Error al enviar mensaje');
+         const rpt ={
+            "status": "error",
+            "message": "Error al enviar el mensaje.",
+            "code": "SEND_MESSAGE_ERROR"
+          };
+        res.status(500).send(rpt);
     }
 });
 
