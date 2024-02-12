@@ -102,7 +102,7 @@ app.post('/api/whatsapp', async (req, res) => {
     await client.sendMessage(targetNumber, message_);
     const rpt = {
         "status": "success",
-        "message": "El mensaje fue enviado exitosamente a +999999999"
+        "message": `El mensaje fue enviado exitosamente a +51${phone}.`,
       }; 
     console.log('Mensaje enviado correctamente');
     res.send(rpt);
