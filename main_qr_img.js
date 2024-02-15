@@ -1,9 +1,9 @@
-const qrcode = require('qrcode-terminal');
+const qrcode = require('qrcode');
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const puppeteer = require('puppeteer');
+const fs = require('fs');
 
-
-// iniciar servicio de whatsapp web js 
+// Iniciar servicio de WhatsApp Web JS
 
 const browser = async function () {
     return browser = await puppeteer.launch({
@@ -11,7 +11,6 @@ const browser = async function () {
         executablePath: '/usr/bin/chromium-browser', // Puedes especificar la ruta del ejecutable de Chromium aquí
         args: ['--no-sandbox'], // Agrega esta línea para deshabilitar el sandbox
     });
-
 }
 
 const client = new Client({
@@ -22,11 +21,14 @@ const client = new Client({
     }
 });
 
-client.on('qr', qr => {
-    qrcode.generate(qr, { small: true });
+client.on('qr', async qr => {
+    // Generar QR y guardarlo como imagen
+    const qrImageFilePath = 'qrcode.png';
+    await qrcode.toFile(qrImageFilePath, qr, { small: true });
+    console.log(`QR Code generado y guardado como ${qrImageFilePath}`);
 });
 
-client.on('ready',async () => {
+client.on('ready', async () => {
     console.log('Client is ready!');
     const targetNumber = `51971619505@c.us`;
     const message = 'Hola, soy un bot que envía mensajes';
@@ -35,4 +37,3 @@ client.on('ready',async () => {
 });
 
 client.initialize();
-
