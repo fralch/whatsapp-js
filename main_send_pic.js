@@ -34,10 +34,12 @@ client.on('ready', async () => {
     // Crear una instancia de MessageMedia con los datos en base64
     const media = new MessageMedia('image/jpeg', imageData, 'image.jpg');
 
+    const caption = 'Hola, soy un bot que envía imágenes';
+
     try {
         // Obtener el chat por el ID y enviar la imagen
         const chat = await client.getChatById(targetNumber);
-        chat.sendMessage(media);
+        await chat.sendMessage(media, { caption });
 
         console.log('Mensaje enviado correctamente');
     } catch (error) {
