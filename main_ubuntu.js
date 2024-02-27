@@ -71,6 +71,7 @@ app.get('/', (req, res) => {
 
 app.post('/api/whatsapp',upload.single('imagen'), async (req, res) => {
     const imgURL = req.protocol + '://' + req.get('host') + '/uploads/' + req.file.filename;
+    const imgUbicacion= './uploads/' + req.file.filename;
     console.log(imgURL);
     const message = req.body.message;
     const phone = req.body.phone;
@@ -124,7 +125,7 @@ app.post('/api/whatsapp',upload.single('imagen'), async (req, res) => {
     const targetNumber = `51${phone}@c.us`;
     const message_ = `${message}`;
 
-    const imageData = fs.readFileSync('frank.jpg', { encoding: 'base64' });
+    const imageData = fs.readFileSync(imgUbicacion, { encoding: 'base64' });
     const media = new MessageMedia('image/jpeg', imageData, 'image.jpg');
 
     const caption = message_;
