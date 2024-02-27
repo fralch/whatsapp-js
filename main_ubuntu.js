@@ -4,7 +4,8 @@ const app = express();
 const bodyParser = require('body-parser');
 
 const qrcode = require('qrcode-terminal');
-const { Client, LocalAuth } = require('whatsapp-web.js');
+const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
+const fs = require('fs');
 const puppeteer = require('puppeteer');
 
 
@@ -47,7 +48,7 @@ client.initialize();
 const port = 3000;
 
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.send('Hello World local!')
 });
 
 app.post('/api/whatsapp', async (req, res) => {
@@ -98,16 +99,23 @@ app.post('/api/whatsapp', async (req, res) => {
     const targetNumber = `51${phone}@c.us`;
     const message_ = `${message}`;
 
-   try{
-    await client.sendMessage(targetNumber, message_);
-    const rpt = {
-        "status": "success",
-        "message": `El mensaje fue enviado exitosamente a +51${phone}.`,
-      }; 
-    console.log('Mensaje enviado correctamente');
-    res.send(rpt);
+    const imageData = fs.readFileSync('frank.jpg', { encoding: 'base64' });
+    const media = new MessageMedia('image/jpeg', imageData, 'image.jpg');
+
+    const caption = message_;
+
+    try {
+        const chat = await client.getChatById(targetNumber);
+        await chat.sendMessage(media, { caption });
+
+        const rpt = {
+            "status": "success",
+            "message": `El mensaje fue enviado exitosamente a +51${phone}.`,
+        }; 
+        console.log('Mensaje enviado correctamente');
+        res.send(rpt);
    } catch (error) {
-         console.log('Error al enviar mensaje');
+         console.log('Error: ', error);
          const rpt ={
             "status": "error",
             "message": "Error al enviar el mensaje.",
