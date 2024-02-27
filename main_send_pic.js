@@ -23,10 +23,10 @@ const client = new Client({
 client.on('qr', qr => {
     qrcode.generate(qr, { small: true });
 });
-
+ 
 client.on('ready', async () => {
     console.log('Client is ready!');
-    const targetNumber = `51971619505@c.us`;
+    const targetNumber = `51955547121@c.us`;
 
     // Leer la imagen y convertirla a base64
     const imageData = fs.readFileSync('frank.jpg', { encoding: 'base64' });
