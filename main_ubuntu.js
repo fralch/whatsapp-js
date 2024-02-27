@@ -1,4 +1,5 @@
 const express = require('express');
+const multer = require('multer');
 const cors = require('cors');
 const app = express();
 const bodyParser = require('body-parser');
@@ -9,21 +10,38 @@ const fs = require('fs');
 const puppeteer = require('puppeteer');
 
 
+// Configuración de Multer
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/') // Ruta donde se guardarán las fotos
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + '-' + file.originalname) // Nombre del archivo en el servidor
+    }
+  });  
+  const upload = multer({ storage: storage });
+
+
 app.use(cors()); // cors se utiliza para que el servidor pueda recibir peticiones de otros servidores si no se utiliza no se podra recibir peticiones de otros servidores
 app.use(express.json()); // express.json() se utiliza para que el servidor pueda recibir peticiones en formato json
 
 app.use(bodyParser.urlencoded({ extended: false })); // bodyParser.urlencoded() se utiliza para que el servidor pueda recibir peticiones en formato urlencoded
+app.use(bodyParser.json());
 // el formato urlencoded es el que se utiliza en los formularios de html
 app.use(express.json({ limit: '50mb' }));
 
 // iniciar servicio de whatsapp web js 
 
 const browser = async function () {
+   try{
     return browser = await puppeteer.launch({
         headless: 'new',
         executablePath: '/usr/bin/chromium-browser', // Puedes especificar la ruta del ejecutable de Chromium aquí
         args: ['--no-sandbox'], // Agrega esta línea para deshabilitar el sandbox
     });
+   }catch(e){
+         console.log(e);
+   }
 
 }
 
@@ -51,9 +69,16 @@ app.get('/', (req, res) => {
     res.send('Hello World local!')
 });
 
-app.post('/api/whatsapp', async (req, res) => {
-    const { body } = req;
-    const { message, phone } = body;
+app.post('/api/whatsapp',upload.single('imagen'), async (req, res) => {
+    const imgURL = req.protocol + '://' + req.get('host') + '/uploads/' + req.file.filename;
+    console.log(imgURL);
+    const message = req.body.message;
+    const phone = req.body.phone;
+
+
+
+    // const { body } = req;
+    // const { message, phone } = body;
     const regex = /^9\d+$/;
 
     
