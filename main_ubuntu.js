@@ -11,15 +11,8 @@ const puppeteer = require('puppeteer');
 
 
 // Configuración de Multer
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, 'uploads/') // Ruta donde se guardarán las fotos
-    },
-    filename: function (req, file, cb) {
-      cb(null, Date.now() + '-' + file.originalname) // Nombre del archivo en el servidor
-    }
-  });  
-  const upload = multer({ storage: storage });
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 
 app.use(cors()); // cors se utiliza para que el servidor pueda recibir peticiones de otros servidores si no se utiliza no se podra recibir peticiones de otros servidores
@@ -70,12 +63,11 @@ app.get('/', (req, res) => {
 });
 
 app.post('/api/whatsapp',upload.single('imagen'), async (req, res) => {
-    const imgURL = req.protocol + '://' + req.get('host') + '/uploads/' + req.file.filename;
-    const imgUbicacion= './uploads/' + req.file.filename;
-    console.log(imgURL);
+    
+
     const message = req.body.message;
     const phone = req.body.phone;
-
+ 
 
 
     // const { body } = req;
@@ -125,8 +117,8 @@ app.post('/api/whatsapp',upload.single('imagen'), async (req, res) => {
     const targetNumber = `51${phone}@c.us`;
     const message_ = `${message}`;
 
-    const imageData = fs.readFileSync(imgUbicacion, { encoding: 'base64' });
-    const media = new MessageMedia('image/jpeg', imageData, 'image.jpg');
+    const imgData = req.file.buffer.toString('base64');
+    const media = new MessageMedia('image/jpeg', imgData, 'image.jpg');
 
     const caption = message_;
 
