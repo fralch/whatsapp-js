@@ -26,13 +26,43 @@ const browser = async function () {
 
 }
 
+// const client = new Client({
+//     webVersionCache: {
+//         type: 'remote',
+//         remotePath: 'https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2410.1.html',
+//         },
+//     authStrategy: new LocalAuth(),
+//     puppeteer: {
+//         headless: true,
+//         args: ["--no-sandbox"]
+//     }
+// });
+
+
+// const client = new Client({
+//     webVersionCache: {
+//         type: 'remote',
+//         remotePath: 'https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2402.5.html',
+//         },
+//     authStrategy: new LocalAuth(),
+//     puppeteer: {
+//         headless: true,
+//         args: ["--no-sandbox"]
+//     }
+// });
+
 const client = new Client({
+    webVersionCache: {
+        type: 'remote',
+        remotePath: 'https://raw.githubusercontent.com/fralch/CrediWhatsapp-connect/main/wcache.html',
+        },
     authStrategy: new LocalAuth(),
     puppeteer: {
         headless: true,
         args: ["--no-sandbox"]
     }
 });
+
 
 client.on('qr', qr => {
     qrcode.generate(qr, { small: true });
@@ -44,7 +74,7 @@ client.on('ready', () => {
 
 client.initialize();
 
-const port = 3000;
+const port = 3001;
 
 
 app.post('/api/whatsapp', async (req, res) => {
