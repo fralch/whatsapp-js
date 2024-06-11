@@ -1,0 +1,106 @@
+2024/06/11-10:09:12.143 8c38 Reusing MANIFEST /home/fralch/CODE/whatsapp-js/auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/06/11-10:09:12.144 8c38 Recovering log #439
+2024/06/11-10:09:12.186 8c38 Reusing old log /home/fralch/CODE/whatsapp-js/auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000439.log 
+2024/06/11-10:09:13.617 8c3a Compacting 1@1 + 1@2 files
+2024/06/11-10:09:13.697 8c3a Generated table #448@1: 51458 keys, 2221979 bytes
+2024/06/11-10:09:13.697 8c3a Compacted 1@1 + 1@2 files => 2221979 bytes
+2024/06/11-10:09:13.705 8c3a compacted to: files[ 0 0 21 0 0 0 0 ]
+2024/06/11-10:09:13.706 8c3a Delete type=2 #441
+2024/06/11-10:09:13.706 8c3a Delete type=2 #437
+2024/06/11-10:09:39.417 8c3a Level-0 table #450: started
+2024/06/11-10:09:39.457 8c3a Level-0 table #450: 1128531 bytes OK
+2024/06/11-10:09:39.462 8c3a Delete type=0 #439
+2024/06/11-10:09:40.451 8c3d Compacting 1@0 + 0@1 files
+2024/06/11-10:09:40.473 8c3d Generated table #451@0: 21366 keys, 263448 bytes
+2024/06/11-10:09:40.490 8c3d Generated table #452@0: 13427 keys, 377398 bytes
+2024/06/11-10:09:40.490 8c3d Compacted 1@0 + 0@1 files => 640846 bytes
+2024/06/11-10:09:40.494 8c3d compacted to: files[ 0 2 21 0 0 0 0 ]
+2024/06/11-10:09:41.501 8c3a Compacting 1@1 + 4@2 files
+2024/06/11-10:09:41.589 8c3a Generated table #453@1: 63658 keys, 2259088 bytes
+2024/06/11-10:09:41.644 8c3a Generated table #454@1: 43453 keys, 2177433 bytes
+2024/06/11-10:09:41.733 8c3a Generated table #455@1: 97552 keys, 2246594 bytes
+2024/06/11-10:09:41.790 8c3a Generated table #456@1: 68948 keys, 1571568 bytes
+2024/06/11-10:09:41.790 8c3a Compacted 1@1 + 4@2 files => 8254683 bytes
+2024/06/11-10:09:41.795 8c3a compacted to: files[ 0 1 21 0 0 0 0 ]
+2024/06/11-10:09:41.795 8c3a Delete type=2 #446
+2024/06/11-10:09:41.795 8c3a Delete type=2 #443
+2024/06/11-10:09:41.795 8c3a Delete type=2 #452
+2024/06/11-10:09:41.795 8c3a Delete type=2 #450
+2024/06/11-10:09:41.795 8c3a Delete type=2 #445
+2024/06/11-10:09:41.795 8c3a Delete type=2 #444
+2024/06/11-10:09:59.428 8c38 Compacting 1@1 + 14@2 files
+2024/06/11-10:09:59.511 8c38 Generated table #457@1: 51840 keys, 2223129 bytes
+2024/06/11-10:09:59.558 8c38 Generated table #458@1: 11367 keys, 2163461 bytes
+2024/06/11-10:09:59.610 8c38 Generated table #459@1: 4603 keys, 2170276 bytes
+2024/06/11-10:09:59.661 8c38 Generated table #460@1: 4550 keys, 2170004 bytes
+2024/06/11-10:09:59.710 8c38 Generated table #461@1: 3739 keys, 2160195 bytes
+2024/06/11-10:09:59.756 8c38 Generated table #462@1: 3536 keys, 2167178 bytes
+2024/06/11-10:09:59.814 8c38 Generated table #463@1: 5277 keys, 2168818 bytes
+2024/06/11-10:09:59.866 8c38 Generated table #464@1: 4653 keys, 2162405 bytes
+2024/06/11-10:09:59.939 8c38 Generated table #465@1: 26810 keys, 2193850 bytes
+2024/06/11-10:09:59.957 8c38 Generated table #466@1: 8062 keys, 470369 bytes
+2024/06/11-10:09:59.957 8c38 Compacted 1@1 + 14@2 files => 20049685 bytes
+2024/06/11-10:09:59.965 8c38 compacted to: files[ 0 0 17 0 0 0 0 ]
+2024/06/11-10:09:59.965 8c38 Delete type=2 #357
+2024/06/11-10:09:59.965 8c38 Delete type=2 #451
+2024/06/11-10:09:59.965 8c38 Delete type=2 #393
+2024/06/11-10:09:59.965 8c38 Delete type=2 #338
+2024/06/11-10:09:59.965 8c38 Delete type=2 #419
+2024/06/11-10:09:59.965 8c38 Delete type=2 #342
+2024/06/11-10:09:59.965 8c38 Delete type=2 #344
+2024/06/11-10:09:59.966 8c38 Delete type=2 #343
+2024/06/11-10:09:59.966 8c38 Delete type=2 #339
+2024/06/11-10:09:59.966 8c38 Delete type=2 #337
+2024/06/11-10:09:59.966 8c38 Delete type=2 #402
+2024/06/11-10:09:59.966 8c38 Delete type=2 #438
+2024/06/11-10:09:59.966 8c38 Delete type=2 #448
+2024/06/11-10:09:59.966 8c38 Delete type=2 #340
+2024/06/11-10:09:59.966 8c38 Delete type=2 #341
+2024/06/11-10:10:23.722 8c3a Level-0 table #468: started
+2024/06/11-10:10:23.760 8c3a Level-0 table #468: 1109230 bytes OK
+2024/06/11-10:10:23.764 8c3a Delete type=0 #449
+2024/06/11-10:10:23.769 8c3a Compacting 1@0 + 0@1 files
+2024/06/11-10:10:23.789 8c3a Generated table #469@0: 20806 keys, 193736 bytes
+2024/06/11-10:10:23.809 8c3a Generated table #470@0: 17475 keys, 476233 bytes
+2024/06/11-10:10:23.809 8c3a Compacted 1@0 + 0@1 files => 669969 bytes
+2024/06/11-10:10:23.813 8c3a compacted to: files[ 0 2 17 0 0 0 0 ]
+2024/06/11-10:10:23.813 8c3a Delete type=2 #468
+2024/06/11-10:10:23.829 8c3d Compacting 1@1 + 5@2 files
+2024/06/11-10:10:23.907 8c3d Generated table #471@1: 29218 keys, 2255146 bytes
+2024/06/11-10:10:23.991 8c3d Generated table #472@1: 63074 keys, 2257871 bytes
+2024/06/11-10:10:24.050 8c3d Generated table #473@1: 38389 keys, 2170282 bytes
+2024/06/11-10:10:24.141 8c3d Generated table #474@1: 99155 keys, 2249748 bytes
+2024/06/11-10:10:24.214 8c3d Generated table #475@1: 89151 keys, 2027724 bytes
+2024/06/11-10:10:24.215 8c3d Compacted 1@1 + 5@2 files => 10960771 bytes
+2024/06/11-10:10:24.219 8c3d compacted to: files[ 0 1 17 0 0 0 0 ]
+2024/06/11-10:10:24.220 8c3d Delete type=2 #453
+2024/06/11-10:10:24.220 8c3d Delete type=2 #456
+2024/06/11-10:10:24.220 8c3d Delete type=2 #455
+2024/06/11-10:10:24.220 8c3d Delete type=2 #470
+2024/06/11-10:10:24.220 8c3d Delete type=2 #347
+2024/06/11-10:10:24.220 8c3d Delete type=2 #454
+2024/06/11-10:10:25.520 8c3a Compacting 1@1 + 11@2 files
+2024/06/11-10:10:25.599 8c3a Generated table #476@1: 51968 keys, 2222620 bytes
+2024/06/11-10:10:25.650 8c3a Generated table #477@1: 11979 keys, 2164287 bytes
+2024/06/11-10:10:25.706 8c3a Generated table #478@1: 4588 keys, 2168320 bytes
+2024/06/11-10:10:25.767 8c3a Generated table #479@1: 4543 keys, 2169919 bytes
+2024/06/11-10:10:25.819 8c3a Generated table #480@1: 3762 keys, 2159833 bytes
+2024/06/11-10:10:25.872 8c3a Generated table #481@1: 3512 keys, 2167046 bytes
+2024/06/11-10:10:25.918 8c3a Generated table #482@1: 5269 keys, 2168051 bytes
+2024/06/11-10:10:26.019 8c3a Generated table #483@1: 4678 keys, 2163203 bytes
+2024/06/11-10:10:26.084 8c3a Generated table #484@1: 26279 keys, 2193019 bytes
+2024/06/11-10:10:26.157 8c3a Generated table #485@1: 29819 keys, 2065884 bytes
+2024/06/11-10:10:26.157 8c3a Compacted 1@1 + 11@2 files => 21642182 bytes
+2024/06/11-10:10:26.163 8c3a compacted to: files[ 0 0 16 0 0 0 0 ]
+2024/06/11-10:10:26.164 8c3a Delete type=2 #464
+2024/06/11-10:10:26.164 8c3a Delete type=2 #459
+2024/06/11-10:10:26.164 8c3a Delete type=2 #463
+2024/06/11-10:10:26.164 8c3a Delete type=2 #469
+2024/06/11-10:10:26.164 8c3a Delete type=2 #466
+2024/06/11-10:10:26.164 8c3a Delete type=2 #460
+2024/06/11-10:10:26.164 8c3a Delete type=2 #465
+2024/06/11-10:10:26.165 8c3a Delete type=2 #345
+2024/06/11-10:10:26.165 8c3a Delete type=2 #461
+2024/06/11-10:10:26.165 8c3a Delete type=2 #457
+2024/06/11-10:10:26.165 8c3a Delete type=2 #462
+2024/06/11-10:10:26.165 8c3a Delete type=2 #458

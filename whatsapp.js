@@ -14,19 +14,24 @@ app.use(bodyParser.json({ limit: '1mb' }));
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
+const webversion = '2.2412.54v2';
+
 const client = new Client({
   puppeteer: {
+    args: ['--no-sandbox', '--disable-gpu'],
     headless: true,
-    args: ['--no-sandbox'],
+    executablePath: '/usr/bin/chromium-browser',
   },
-  authStrategy: new LocalAuth(),
+  authStrategy: new LocalAuth({
+    dataPath: 'auth',
+  }),
+
+  webVersion: webversion,
   webVersionCache: {
     type: 'remote',
-    remotePath:
-      'https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2411.2.html',
+    remotePath: `https://raw.githubusercontent.com/guigo613/alternative-wa-version/main/html/${webversion}.html`,
   },
-  authTimeoutMs: 60000, // Optional: timeout for authentication in milliseconds
-  qrTimeout: 30000, // Optional: timeout for QR code generation
+  restartOnAuthFail: true,
 });
 
 client.on('qr', (qr) => {
