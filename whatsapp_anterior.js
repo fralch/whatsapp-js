@@ -14,7 +14,7 @@ app.use(bodyParser.json({ limit: '1mb' }));
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-const webversion = '2.2412.54';
+const webversion = '2.2412.54v2';
 
 const client = new Client({
   puppeteer: {

@@ -1,7 +1,7 @@
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 
-const webversion = '2.2412.54v2';
+const webversion = '2.2412.54';
 
 const client = new Client({
   puppeteer: {
